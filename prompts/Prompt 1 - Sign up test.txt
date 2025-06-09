@@ -1,0 +1,71 @@
+Could you generate me a sign up tests for this particular website using latest playwright framework:
+
+https://automationexercise.com/login
+
+Here is sign up form delimited by three hashes:
+###
+<!--sign up form-->
+						<h2>New User Signup!</h2>
+						<form action="/signup" method="POST">
+							<input type="hidden" name="csrfmiddlewaretoken" value="G6itz94ryBjaztcsa3jN6pqWvfwEN1GkmVKDwdUcnn7xqOXdFqKtKiLz5fTME3Md">
+							<input type="text" data-qa="signup-name" placeholder="Name" name="name" value="" required="">
+							<input type="email" data-qa="signup-email" placeholder="Email Address" name="email" value="" required="">
+							<input type="hidden" name="form_type" value="signup">
+							
+							<button type="submit" data-qa="signup-button" class="btn btn-default">Signup</button>
+						</form>
+###
+
+Remember to use page object model. Here is the example of the page object model delimited by three hashes:
+
+###
+import { expect, type Locator, type Page } from '@playwright/test';
+
+export class PlaywrightDevPage {
+  readonly page: Page;
+  readonly getStartedLink: Locator;
+  readonly gettingStartedHeader: Locator;
+  readonly pomLink: Locator;
+  readonly tocList: Locator;
+
+  constructor(page: Page) {
+    this.page = page;
+    this.getStartedLink = page.locator('a', { hasText: 'Get started' });
+    this.gettingStartedHeader = page.locator('h1', { hasText: 'Installation' });
+    this.pomLink = page.locator('li', {
+      hasText: 'Guides',
+    }).locator('a', {
+      hasText: 'Page Object Model',
+    });
+    this.tocList = page.locator('article div.markdown ul > li > a');
+  }
+
+  async goto() {
+    await this.page.goto('https://playwright.dev');
+  }
+
+  async getStarted() {
+    await this.getStartedLink.first().click();
+    await expect(this.gettingStartedHeader).toBeVisible();
+  }
+
+  async pageObjectModel() {
+    await this.getStarted();
+    await this.pomLink.click();
+  }
+}
+###
+
+Try to use the recommended builtin locators. These are the recommended built-in locators.
+
+    page.getByRole() to locate by explicit and implicit accessibility attributes.
+    page.getByText() to locate by text content.
+    page.getByLabel() to locate a form control by associated label's text.
+    page.getByPlaceholder() to locate an input by placeholder.
+    page.getByAltText() to locate an element, usually image, by its text alternative.
+    page.getByTitle() to locate an element by its title attribute.
+    page.getByTestId() to locate an element based on its data-testid attribute (other attributes can be configured).
+
+Use the environment .env file to store, username and password and the base url (https://automationexercise.com) and use it in the tests. Please also generate a config file that would encapsulate the properties from the .env file.
+					
+Generate one successfull sign up test. 

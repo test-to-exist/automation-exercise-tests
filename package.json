@@ -18,6 +18,8 @@
   "homepage": "https://github.com/test-to-exist/automation-exercise-tests#readme",
   "devDependencies": {
     "@playwright/test": "^1.52.0",
-    "@types/node": "^22.15.30"
+    "@types/node": "^22.15.30",
+    "dotenv": "^16.5.0",
+    "uuid": "^11.1.0"
   }
 }
