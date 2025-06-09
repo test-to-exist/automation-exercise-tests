@@ -1,10 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { SignupPage } from '../pages/sign-up.page';
+import { SignupPage } from '@pages/sign-up.page';
 import { v4 as uuid } from "uuid";
 import { faker } from '@faker-js/faker';
-import dotenv from 'dotenv';
+import { AcceptCookiesPage } from '@pages/accept-cookies.page';
 
-dotenv.config();
 
 test('Successful signup test', async ({ page }) => {
   const signupPage = new SignupPage(page);
@@ -14,6 +13,9 @@ test('Successful signup test', async ({ page }) => {
   const email = process.env.USERNAME!;
   
   await signupPage.goto();
+  const acceptCookiesPage = new AcceptCookiesPage(page);
+  await acceptCookiesPage.consentButton.click();
+  await expect(signupPage.signupHeader).toBeVisible();
   const accountInformationPage = await signupPage.signUp(uuid(), email);
   await expect(accountInformationPage.accountInformaionHeader).toBeVisible();
   

@@ -1,5 +1,5 @@
-import { expect, type Locator, type Page } from '@playwright/test';
-import { AccountInformationPage } from './account-information.page';
+import { expect, Locator, Page } from '@playwright/test';
+import { AccountInformationPage } from '@pages/account-information.page';
 
 export class SignupPage {
   readonly page: Page;
@@ -18,8 +18,6 @@ export class SignupPage {
 
   async goto() {
     await this.page.goto(`${process.env.BASE_URL}/login`);
-    await this.page.getByRole('button', { name: 'Consent'}).click();
-    await expect(this.signupHeader).toBeVisible();
   }
 
   async signUp(name: string, email: string) {
