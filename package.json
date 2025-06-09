@@ -1,0 +1,23 @@
+{
+  "name": "automation-exercise-tests",
+  "version": "1.0.0",
+  "description": "Playwright tests for automation exercise website",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/test-to-exist/automation-exercise-tests.git"
+  },
+  "author": "Tester Tom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/test-to-exist/automation-exercise-tests/issues"
+  },
+  "homepage": "https://github.com/test-to-exist/automation-exercise-tests#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.30"
+  }
+}
