@@ -2,7 +2,6 @@ import { defineConfig, devices } from '@playwright/test';
 import * as dotenv from 'dotenv';
 
 dotenv.config({ path: '.env' });
-console.log(process.env.BASE_URL);
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -20,6 +19,7 @@ export default defineConfig({
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
+  globalSetup: require.resolve('./global-setup'),
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
