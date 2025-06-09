@@ -26,6 +26,7 @@ export class AccountInformationPage {
   readonly zipcodeInput: Locator;
   readonly mobileNumberInput: Locator;
   readonly createAccountButton: Locator;
+  readonly continueButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -53,6 +54,7 @@ export class AccountInformationPage {
     this.zipcodeInput = page.locator('[data-qa="zipcode"]');
     this.mobileNumberInput = page.locator('[data-qa="mobile_number"]');
     this.createAccountButton = page.locator('[data-qa="create-account"]');
+    this.continueButton = page.getByRole('link', { name: 'Continue' });
   }
 
   async selectTitle(gender: 'Mr' | 'Mrs') {
