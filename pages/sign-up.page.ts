@@ -1,4 +1,5 @@
 import { expect, type Locator, type Page } from '@playwright/test';
+import { AccountInformationPage } from './account-information.page';
 
 export class SignupPage {
   readonly page: Page;
@@ -25,5 +26,6 @@ export class SignupPage {
     await this.nameInput.fill(name);
     await this.emailInput.fill(email);
     await this.signupButton.click();
+    return new AccountInformationPage(this.page);
   }
 }

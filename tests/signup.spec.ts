@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { SignupPage } from '../pages/sign-up.page';
 import { v4 as uuid } from "uuid";
 import dotenv from 'dotenv';
+import { AccountInformationPage } from '../pages/account-information.page';
 
 dotenv.config();
 
@@ -13,8 +14,7 @@ test('Successful signup test', async ({ page }) => {
   const email = process.env.USERNAME!;
   
   await signupPage.goto();
-  await signupPage.signUp(uuid(), email);
-
-  // Assert we're redirected to the correct page after signup
-  await expect(page.getByText('Enter Account Information')).toBeVisible();
+  const accountInformationPage = await signupPage.signUp(uuid(), email);
+  
+  await expect(accountInformationPage.accountInformaionHeader).toBeVisible();
 });
