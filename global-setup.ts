@@ -10,10 +10,9 @@ async function globalSetup(config: FullConfig) {
     const page = await browser.newPage();
 
     const signupPage = new SignupPage(page);
-    const name = process.env.USERNAME!;
 
     process.env.USERNAME = uuid() + '@test.com';
-    const email = process.env.USERNAME!;
+    const email = process.env.USERNAME;
 
     await signupPage.goto();
     const acceptCookiesPage = new AcceptCookiesPage(page);
@@ -27,6 +26,7 @@ async function globalSetup(config: FullConfig) {
 
     const password = faker.internet.password({ length: 12 });
     process.env.PASSWORD = password;
+    
     await accountInformationPage.fillAccountInfo({
         name: faker.person.fullName(),
         password: password,
@@ -50,7 +50,7 @@ async function globalSetup(config: FullConfig) {
 
     await accountInformationPage.submitForm();
 
-    await  expect(page.getByText('Account Created!')).toBeVisible();
+    await expect(page.getByText('Account Created!')).toBeVisible();
 
     await accountInformationPage.continueButton.click();
 
