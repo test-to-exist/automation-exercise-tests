@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { Locator, Page } from "@playwright/test";
 
 export class LoginPage {
   readonly page: Page;
@@ -10,10 +10,10 @@ export class LoginPage {
   constructor(page: Page) {
     this.page = page;
     this.emailInput = page.locator('[data-qa="login-email"]');
-    this.passwordInput = page.getByPlaceholder('Password');
-    this.passwordInput =  page.locator('[data-qa="login-password"]');
+    this.passwordInput = page.getByPlaceholder("Password");
+    this.passwordInput = page.locator('[data-qa="login-password"]');
     this.loginButton = page.locator('[data-qa="login-button"]');
-    this.loginHeader = page.getByText('Login to your account');
+    this.loginHeader = page.getByText("Login to your account");
   }
 
   async goto() {

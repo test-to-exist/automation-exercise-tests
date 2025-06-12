@@ -1,5 +1,5 @@
-import { expect, Locator, Page } from '@playwright/test';
-import { AccountInformationPage } from '@pages/account-information.page';
+import { expect, Locator, Page } from "@playwright/test";
+import { AccountInformationPage } from "@pages/account-information.page";
 
 export class SignupPage {
   readonly page: Page;
@@ -10,7 +10,7 @@ export class SignupPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.signupHeader = page.getByText('New User Signup!');
+    this.signupHeader = page.getByText("New User Signup!");
     this.nameInput = page.locator('[data-qa="signup-name"]');
     this.emailInput = page.locator('[data-qa="signup-email"]');
     this.signupButton = page.locator('[data-qa="signup-button"]');

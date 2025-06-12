@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { Locator, Page } from "@playwright/test";
 
 export class AccountInformationPage {
   readonly page: Page;
@@ -31,17 +31,17 @@ export class AccountInformationPage {
   constructor(page: Page) {
     this.page = page;
 
-    this.accountInformaionHeader = page.getByText('Enter Account Information');
-    this.titleMr = page.locator('#id_gender1');
-    this.titleMrs = page.locator('#id_gender2');
+    this.accountInformaionHeader = page.getByText("Enter Account Information");
+    this.titleMr = page.locator("#id_gender1");
+    this.titleMrs = page.locator("#id_gender2");
     this.nameInput = page.locator('[data-qa="name"]');
     this.emailInput = page.locator('[data-qa="email"]');
     this.passwordInput = page.locator('[data-qa="password"]');
     this.daysSelect = page.locator('[data-qa="days"]');
     this.monthsSelect = page.locator('[data-qa="months"]');
     this.yearsSelect = page.locator('[data-qa="years"]');
-    this.newsletterCheckbox = page.locator('#newsletter');
-    this.optinCheckbox = page.locator('#optin');
+    this.newsletterCheckbox = page.locator("#newsletter");
+    this.optinCheckbox = page.locator("#optin");
 
     this.firstNameInput = page.locator('[data-qa="first_name"]');
     this.lastNameInput = page.locator('[data-qa="last_name"]');
@@ -54,18 +54,26 @@ export class AccountInformationPage {
     this.zipcodeInput = page.locator('[data-qa="zipcode"]');
     this.mobileNumberInput = page.locator('[data-qa="mobile_number"]');
     this.createAccountButton = page.locator('[data-qa="create-account"]');
-    this.continueButton = page.getByRole('link', { name: 'Continue' });
+    this.continueButton = page.getByRole("link", { name: "Continue" });
   }
 
-  async selectTitle(gender: 'Mr' | 'Mrs') {
-    if (gender === 'Mr') {
+  async selectTitle(gender: "Mr" | "Mrs") {
+    if (gender === "Mr") {
       await this.titleMr.check();
     } else {
       await this.titleMrs.check();
     }
   }
 
-  async fillAccountInfo({ name, password, day, month, year, subscribe, offers }: {
+  async fillAccountInfo({
+    name,
+    password,
+    day,
+    month,
+    year,
+    subscribe,
+    offers,
+  }: {
     name: string;
     password: string;
     day: string;
