@@ -38,28 +38,50 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: "chromium",
+      name: "authorized user tests chromium",
+      testDir: "./tests/authorized",
       use: {
         ...devices["Desktop Chrome"],
         storageState: "playwright/.auth/user.json",
       },
     },
-
     {
-      name: "firefox",
+      name: "authorized user tests firefox",
+      testDir: "./tests/authorized",
       use: {
         ...devices["Desktop Firefox"],
         storageState: "playwright/.auth/user.json",
       },
     },
     {
-      name: "webkit",
+      name: "authorized user tests webkit",
+      testDir: "./tests/authorized",
       use: {
         ...devices["Desktop Safari"],
         storageState: "playwright/.auth/user.json",
       },
     },
-
+    {
+      name: "login tests chromium",
+      testDir: "./tests/login",
+      use: {
+        ...devices["Desktop Chrome"],
+      },
+    },
+    {
+      name: "login tests firefox",
+      testDir: "./tests/login",
+      use: {
+        ...devices["Desktop Firefox"],
+      },
+    },
+    {
+      name: "login tests webkit",
+      testDir: "./tests/login",
+      use: {
+        ...devices["Desktop Safari"],
+      },
+    },
     /* Test against branded browsers. */
     // {
     //   name: "Microsoft Edge",
