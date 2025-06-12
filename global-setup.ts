@@ -5,7 +5,7 @@ import { faker } from "@faker-js/faker";
 import { AcceptCookiesPage } from "@pages/accept-cookies.page";
 import * as path from "path";
 
-const authFile = path.join(__dirname, "../playwright/.auth/user.json");
+const authFile = path.join(__dirname, "/playwright/.auth/user.json");
 
 async function globalSetup(config: FullConfig) {
   const browser = await chromium.launch();
@@ -54,7 +54,6 @@ async function globalSetup(config: FullConfig) {
   await expect(page.getByText("Account Created!")).toBeVisible();
 
   await accountInformationPage.continueButton.click();
-
   await page.context().storageState({ path: authFile });
 
   await browser.close();
