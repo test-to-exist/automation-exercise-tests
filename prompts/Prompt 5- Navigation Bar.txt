@@ -1,0 +1,69 @@
+Create me a playwright page object model class for the html delimited by three hashes
+
+###
+<ul class="nav navbar-nav">
+								
+								<li><a href="/" style="color: orange;"><i class="fa fa-home"></i> Home</a></li>
+								<li><a href="/products"><i class="material-icons card_travel" style="font-size: 16px;"></i> Products</a></li>
+								<li><a href="/view_cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								
+								<li><a href="/logout" style="color:brown;"><i class="fa fa-lock"></i> Logout</a></li>
+								<li><a href="/delete_account" style="color:brown;"><i class="fa fa-trash-o"></i> Delete Account</a></li>
+								
+								<li><a href="/test_cases"><i class="fa fa-list"></i> Test Cases</a></li>
+								<li><a href="/api_list"><i class="fa fa-list"></i> API Testing</a></li>
+								<li><a href="https://www.youtube.com/c/AutomationExercise"><i class="fa fa-youtube-play"></i> Video Tutorials</a></li>
+								<li><a href="/contact_us"><i class="fa fa-envelope"></i> Contact us</a></li>
+								
+								<li><a><i class="fa fa-user"></i> Logged in as <b>Sara Pollich</b></a></li>
+								
+							</ul>
+###
+
+Please call the class NavigationBar. Generate page similar in style to the page below delimited by three hashes:
+
+###
+import { expect, Locator, Page } from '@playwright/test';
+
+export class PlaywrightDevPage {
+  readonly page: Page;
+  readonly getStartedLink: Locator;
+  readonly gettingStartedHeader: Locator;
+  readonly pomLink: Locator;
+  readonly tocList: Locator;
+
+  constructor(page: Page) {
+    this.page = page;
+    this.getStartedLink = page.locator('a', { hasText: 'Get started' });
+    this.gettingStartedHeader = page.locator('h1', { hasText: 'Installation' });
+    this.pomLink = page.locator('li', {
+      hasText: 'Guides',
+    }).locator('a', {
+      hasText: 'Page Object Model',
+    });
+    this.tocList = page.locator('article div.markdown ul > li > a');
+  }
+
+  async goto() {
+    await this.page.goto('https://playwright.dev');
+  }
+
+  async getStarted() {
+    await this.getStartedLink.first().click();
+    await expect(this.gettingStartedHeader).toBeVisible();
+  }
+
+  async pageObjectModel() {
+    await this.getStarted();
+    await this.pomLink.click();
+  }
+}
+###
+
+The page should have only locators for the links.
+
+Here is the example of the locator style delimited by three hashes:
+
+###
+page.getByRole("link", { name: "Products" })
+###

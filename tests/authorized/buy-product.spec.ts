@@ -1,12 +1,19 @@
 import { faker } from "@faker-js/faker";
+import { NavigationBar } from "@pages/navigation-bar";
+import { ProductsPage } from "@pages/products.page";
 import { test, expect, Page } from "@playwright/test";
 
 test("Add product to cart and checkout", async ({ page }) => {
   await page.goto(process.env.BASE_URL);
-  await page.getByRole("link", { name: "Products" }).click();
-  await addItemById(1, page);
-  await page.getByRole("button", { name: "Continue Shopping" }).click();
-  await page.getByRole("link", { name: "Cart" }).click();
+  const navigationBar = new NavigationBar(page);
+  await navigationBar.productsLink.click();
+
+  const productsPage = new ProductsPage(page);
+  const productAddedModal = await productsPage.addItemById(1);
+  await productAddedModal.continueShoppingButton.click();
+
+  await navigationBar.cartLink.click();
+
   await page.getByText("Proceed To Checkout").click();
   expect(page.getByRole("heading", { name: "Your delivery address" }))
     .toBeVisible;

@@ -19,7 +19,7 @@ Remember to use page object model. Here is the example of the page object model 
 Please use data-qa attributtes if possible when creating locators.
 
 ###
-import { expect, type Locator, type Page } from '@playwright/test';
+import { expect, Locator, Page } from '@playwright/test';
 
 export class PlaywrightDevPage {
   readonly page: Page;
