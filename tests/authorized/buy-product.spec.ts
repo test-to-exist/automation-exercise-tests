@@ -36,7 +36,3 @@ test("Add product to cart and checkout", async ({ page }) => {
   await paymentPage.payAndConfirmOrderButton.click();
   expect(page.getByText("Congratulations! Your order has been confirmed!"));
 });
-
-async function addItemById(id: number, page: Page) {
-  await page.locator(`a[data-product-id="${id}"]`).first().click();
-}
