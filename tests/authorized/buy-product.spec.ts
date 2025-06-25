@@ -22,6 +22,8 @@ test("Add product to cart and checkout", async ({ page }) => {
 
   await navigationBar.cartLink.click();
   const cartPage = new CartPage(page);
+  const cartItemsCount = await cartPage.getCartItemsCount();
+  expect(cartItemsCount).toBe(1);
 
   const checkoutPage = await cartPage.proceedToCheckout();
   const paymentPage = await checkoutPage.placeOrder();

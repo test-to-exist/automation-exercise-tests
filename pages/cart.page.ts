@@ -14,4 +14,9 @@ export class CartPage {
     await this.proceedToCheckoutButton.click();
     return new CheckoutPage(this.page);
   }
+
+  async getCartItemsCount(): Promise<number> {
+    const cartItems = await this.page.locator("tr[id^='product']").count();
+    return cartItems;
+  }
 }
