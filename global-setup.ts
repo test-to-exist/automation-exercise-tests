@@ -8,6 +8,8 @@ import * as path from "path";
 const authFile = path.join(__dirname, "/playwright/.auth/user.json");
 
 async function globalSetup(config: FullConfig) {
+  console.log("process.env.CI");
+  console.log(process.env.CI);
   const browser = await chromium.launch();
   const page = await browser.newPage();
 
