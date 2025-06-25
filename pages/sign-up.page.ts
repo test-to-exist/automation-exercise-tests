@@ -17,7 +17,7 @@ export class SignupPage {
   }
 
   async goto() {
-    await this.page.goto(`${process.env.BASE_URL}/login`, { timeout: 60000 });
+    await this.page.goto(`${process.env.BASE_URL}/login`);
   }
 
   async signUp(name: string, email: string) {
