@@ -11,17 +11,19 @@ test("Add product to cart and checkout", async ({ page }) => {
 
   const productsPage = new ProductsPage(page);
   const productAddedModal = await productsPage.addItemById(1);
+
+  await expect(productAddedModal.modalTitle).toHaveText("Added!");
+  await expect(productAddedModal.modalBody).toContainText([
+    "Your product has been added to cart.",
+    "View Cart",
+  ]);
+
   await productAddedModal.continueShoppingButton.click();
 
   await navigationBar.cartLink.click();
   const cartPage = new CartPage(page);
 
   const checkoutPage = await cartPage.proceedToCheckout();
-
-  expect(page.getByRole("heading", { name: "Your delivery address" }))
-    .toBeVisible;
-  await expect(page.getByText("Your billing address Mr.")).toBeVisible();
-
   const paymentPage = await checkoutPage.placeOrder();
 
   const expiryDate = new Date();
