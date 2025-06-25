@@ -8,8 +8,8 @@ test("User logs in successfully", async ({ page }) => {
 
   await expect(loginPage.loginHeader).toBeVisible();
 
-  const acceptCookiesPage = new AcceptCookiesPage(page);
-  await acceptCookiesPage.consentButton.click();
+  // const acceptCookiesPage = new AcceptCookiesPage(page);
+  // await acceptCookiesPage.consentButton.click();
 
   const username = process.env.USERNAME;
   const password = process.env.PASSWORD;
