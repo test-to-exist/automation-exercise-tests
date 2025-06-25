@@ -15,11 +15,9 @@ async function globalSetup(config: FullConfig) {
 
   process.env.USERNAME = uuid() + "@test.com";
   const email = process.env.USERNAME;
-  console.log("base url:");
-  console.log(process.env.BASE_URL);
   await signupPage.goto();
-  const acceptCookiesPage = new AcceptCookiesPage(page);
-  await acceptCookiesPage.consentButton.click();
+  // const acceptCookiesPage = new AcceptCookiesPage(page);
+  // await acceptCookiesPage.consentButton.click();
   await expect(signupPage.signupHeader).toBeVisible();
   const accountInformationPage = await signupPage.signUp(uuid(), email);
   await expect(accountInformationPage.accountInformaionHeader).toBeVisible();
