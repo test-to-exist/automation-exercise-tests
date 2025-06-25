@@ -4,12 +4,11 @@ import { v4 as uuid } from "uuid";
 import { faker } from "@faker-js/faker";
 import { AcceptCookiesPage } from "@pages/accept-cookies.page";
 import * as path from "path";
+import { isNil } from "lodash";
 
 const authFile = path.join(__dirname, "/playwright/.auth/user.json");
 
 async function globalSetup(config: FullConfig) {
-  console.log("process.env.CI");
-  console.log(process.env.CI);
   const browser = await chromium.launch();
   const page = await browser.newPage();
 
@@ -18,8 +17,11 @@ async function globalSetup(config: FullConfig) {
   process.env.USERNAME = uuid() + "@test.com";
   const email = process.env.USERNAME;
   await signupPage.goto();
-  // const acceptCookiesPage = new AcceptCookiesPage(page);
-  // await acceptCookiesPage.consentButton.click();
+
+  if (isNil(process.env.CI) || process.env.CI === "false") {
+    const acceptCookiesPage = new AcceptCookiesPage(page);
+    await acceptCookiesPage.consentButton.click();
+  }
   await expect(signupPage.signupHeader).toBeVisible();
   const accountInformationPage = await signupPage.signUp(uuid(), email);
   await expect(accountInformationPage.accountInformaionHeader).toBeVisible();
