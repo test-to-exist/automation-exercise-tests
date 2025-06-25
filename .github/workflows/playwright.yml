@@ -18,11 +18,9 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Use variables
+      - name: Use environment file
         run: |
-          echo "repository variable : $BASE_URL"
-        env:
-          BASE_URL: ${{ vars.BASE_URL }}
+          cp example.env .env
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v4
