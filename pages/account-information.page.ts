@@ -3,7 +3,7 @@ import { Locator, Page } from "@playwright/test";
 export class AccountInformationPage {
   readonly page: Page;
 
-  readonly accountInformaionHeader: Locator;
+  readonly accountInformationHeader: Locator;
   readonly titleMr: Locator;
   readonly titleMrs: Locator;
   readonly nameInput: Locator;
@@ -31,7 +31,7 @@ export class AccountInformationPage {
   constructor(page: Page) {
     this.page = page;
 
-    this.accountInformaionHeader = page.getByText("Enter Account Information");
+    this.accountInformationHeader = page.getByText("Enter Account Information");
     this.titleMr = page.locator("#id_gender1");
     this.titleMrs = page.locator("#id_gender2");
     this.nameInput = page.locator('[data-qa="name"]');

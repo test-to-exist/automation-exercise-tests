@@ -27,6 +27,10 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: "html",
   timeout: 45 * 1000, // Default timeout for each test
+  expect: {
+    /* Maximum time expect() should wait for the condition to be met. */
+    timeout: 10000,
+  },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -63,12 +67,30 @@ export default defineConfig({
       },
     },
     {
-      name: "login tests chromium",
-      testDir: "./tests/login",
+      name: "authorized user tests microsoft edge",
+      testDir: "./tests/authorized",
       use: {
-        ...devices["Desktop Chrome"],
+        ...devices["Desktop Edge"],
+        channel: "msedge",
+        storageState: "playwright/.auth/user.json",
       },
     },
+    {
+      name: "authorized user tests google chrome",
+      testDir: "./tests/authorized",
+      use: {
+        ...devices["Desktop Chrome"],
+        channel: "chrome",
+        storageState: "playwright/.auth/user.json",
+      },
+    },
+    // {
+    //   name: "login tests chromium",
+    //   testDir: "./tests/login",
+    //   use: {
+    //     ...devices["Desktop Chrome"],
+    //   },
+    // },
     {
       name: "login tests firefox",
       testDir: "./tests/login",
@@ -83,23 +105,20 @@ export default defineConfig({
         ...devices["Desktop Safari"],
       },
     },
-    /* Test against branded browsers. */
-    // {
-    //   name: "Microsoft Edge",
-    //   use: {
-    //     ...devices["Desktop Edge"],
-    //     channel: "msedge",
-    //     storageState: "playwright/.auth/user.json",
-    //   },
-    // },
-    // {
-    //   name: "Google Chrome",
-    //   use: {
-    //     ...devices["Desktop Chrome"],
-    //     channel: "chrome",
-    //     storageState: "playwright/.auth/user.json",
-    //   },
-    // },
+    {
+      name: "login tests microsoft edge",
+      testDir: "./tests/login",
+      use: {
+        ...devices["Desktop Edge"],
+      },
+    },
+    {
+      name: "login tests chrome",
+      testDir: "./tests/login",
+      use: {
+        ...devices["Desktop Chrome"],
+      },
+    },
   ],
 
   /* Run your local dev server before starting the tests */
