@@ -47,7 +47,7 @@ export default defineConfig({
       testDir: "./tests/authorized",
       use: {
         ...devices["Desktop Chrome"],
-        storageState: "playwright/.auth/user.json",
+        // storageState: "playwright/.auth/user.json",
       },
     },
     {
@@ -55,7 +55,7 @@ export default defineConfig({
       testDir: "./tests/authorized",
       use: {
         ...devices["Desktop Firefox"],
-        storageState: "playwright/.auth/user.json",
+        // storageState: "playwright/.auth/user.json",
       },
     },
     {
@@ -63,7 +63,7 @@ export default defineConfig({
       testDir: "./tests/authorized",
       use: {
         ...devices["Desktop Safari"],
-        storageState: "playwright/.auth/user.json",
+        // storageState: "playwright/.auth/user.json",
       },
     },
     {
@@ -72,7 +72,7 @@ export default defineConfig({
       use: {
         ...devices["Desktop Edge"],
         channel: "msedge",
-        storageState: "playwright/.auth/user.json",
+        // storageState: "playwright/.auth/user.json",
       },
     },
     {
@@ -81,7 +81,7 @@ export default defineConfig({
       use: {
         ...devices["Desktop Chrome"],
         channel: "chrome",
-        storageState: "playwright/.auth/user.json",
+        // storageState: "playwright/.auth/user.json",
       },
     },
     // {

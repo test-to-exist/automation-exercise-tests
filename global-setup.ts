@@ -5,8 +5,9 @@ import { faker } from "@faker-js/faker";
 import { AcceptCookiesPage } from "@pages/accept-cookies.page";
 import * as path from "path";
 import { isNil } from "lodash";
+import { getStoragePath } from "@helpers/general";
 
-const authFile = path.join(__dirname, "/playwright/.auth/user.json");
+const authFile = path.join(__dirname, "/playwright/.auth/");
 
 async function globalSetup(config: FullConfig) {
   const env = process.env;
@@ -17,7 +18,7 @@ async function globalSetup(config: FullConfig) {
     const signupPage = new SignupPage(page);
 
     const email = uuid() + "@test.com";
-    env[`USERNAME${i + 1}`] = email;
+    env[`USERNAME${i}`] = email;
     await signupPage.goto();
 
     if (isNil(process.env.CI) || process.env.CI === "false") {
@@ -31,7 +32,7 @@ async function globalSetup(config: FullConfig) {
     await accountInformationPage.selectTitle("Mr");
 
     const password = faker.internet.password({ length: 12 });
-    env[`PASSWORD${i + 1}`] = password;
+    env[`PASSWORD${i}`] = password;
 
     await accountInformationPage.fillAccountInfo({
       name: faker.person.fullName(),
@@ -59,7 +60,7 @@ async function globalSetup(config: FullConfig) {
     await expect(page.getByText("Account Created!")).toBeVisible();
 
     await accountInformationPage.continueButton.click();
-    await page.context().storageState({ path: authFile });
+    await page.context().storageState({ path: getStoragePath(i) });
 
     await browser.close();
   }

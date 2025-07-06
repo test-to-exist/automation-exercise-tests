@@ -14,8 +14,8 @@ test("User logs in successfully", async ({ page }, { parallelIndex }) => {
     const acceptCookiesPage = new AcceptCookiesPage(page);
     await acceptCookiesPage.consentButton.click();
   }
-  const username = env[`USERNAME${parallelIndex + 1}`];
-  const password = env[`PASSWORD${parallelIndex + 1}`];
+  const username = env[`USERNAME${parallelIndex}`];
+  const password = env[`PASSWORD${parallelIndex}`];
 
   await loginPage.login(username, password);
 
