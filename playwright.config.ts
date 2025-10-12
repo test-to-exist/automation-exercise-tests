@@ -92,29 +92,29 @@ export default defineConfig({
     //   },
     // },
     {
-      name: "login tests firefox",
-      testDir: "./tests/login",
+      name: "login & sign up tests firefox",
+      testDir: "./tests/unauthorized",
       use: {
         ...devices["Desktop Firefox"],
       },
     },
     {
-      name: "login tests webkit",
-      testDir: "./tests/login",
+      name: "login & sign up tests webkit",
+      testDir: "./tests/unauthorized",
       use: {
         ...devices["Desktop Safari"],
       },
     },
     {
-      name: "login tests microsoft edge",
-      testDir: "./tests/login",
+      name: "login & sign up tests microsoft edge",
+      testDir: "./tests/unauthorized",
       use: {
         ...devices["Desktop Edge"],
       },
     },
     {
-      name: "login tests chrome",
-      testDir: "./tests/login",
+      name: "login & sign up tests chrome",
+      testDir: "./tests/unathorized",
       use: {
         ...devices["Desktop Chrome"],
       },
