@@ -114,7 +114,7 @@ export default defineConfig({
     },
     {
       name: "login & sign up tests chrome",
-      testDir: "./tests/unathorized",
+      testDir: "./tests/unauthorized",
       use: {
         ...devices["Desktop Chrome"],
       },
