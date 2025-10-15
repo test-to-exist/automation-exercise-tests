@@ -38,4 +38,24 @@ test.describe("Login Tests", () => {
       page.getByText("Your email or password is incorrect!")
     ).toBeVisible();
   });
+
+  test("User fails to log in with an empty email", async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    await loginPage.login("", "password");
+
+    await expect(
+      page.getByRole("heading", { name: "Login to your account" })
+    ).toBeVisible();
+  });
+
+  test("User fails to log in with an empty password", async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    await loginPage.login(faker.internet.email(), "");
+
+    await expect(
+      page.getByRole("heading", { name: "Login to your account" })
+    ).toBeVisible();
+  });
 });
