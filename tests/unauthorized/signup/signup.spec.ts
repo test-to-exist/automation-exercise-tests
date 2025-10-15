@@ -28,8 +28,24 @@ test.describe("Signup Tests", () => {
     );
     await expect(page.getByText("Email Address already exist!")).toBeVisible;
   });
-  test("User fails to sign up with invalid email", async ({ page }) => {});
-  test("User fails to sign up with missing credentials", async ({
-    page,
-  }) => {});
+  test("User fails to sign up with invalid email", async ({ page }) => {
+    const accontInformationPage = await signupPage.signUp(
+      faker.person.fullName(),
+      "invalidEmail"
+    );
+    await expect(
+      page.getByRole("heading", { name: "New User Signup!" })
+    ).toBeVisible();
+  });
+  test("User fails to sign up with missing name", async ({ page }, {
+    parallelIndex,
+  }) => {
+    const accontInformationPage = await signupPage.signUp(
+      "",
+      env[`USERNAME${parallelIndex}`]
+    );
+    await expect(
+      page.getByRole("heading", { name: "New User Signup!" })
+    ).toBeVisible();
+  });
 });
