@@ -12,7 +12,6 @@ test.describe("Signup Tests", () => {
     signupPage = new SignupPage(page);
     await signupPage.goto();
 
-    // env = process.env;
     if (isNil(env["CI"]) || env["CI"] === "false") {
       const acceptCookiesPage = new AcceptCookiesPage(page);
       await acceptCookiesPage.consentButton.click();
@@ -28,6 +27,7 @@ test.describe("Signup Tests", () => {
     );
     await expect(page.getByText("Email Address already exist!")).toBeVisible;
   });
+
   test("User fails to sign up with invalid email", async ({ page }) => {
     const accontInformationPage = await signupPage.signUp(
       faker.person.fullName(),
@@ -37,6 +37,7 @@ test.describe("Signup Tests", () => {
       page.getByRole("heading", { name: "New User Signup!" })
     ).toBeVisible();
   });
+
   test("User fails to sign up with missing name", async ({ page }, {
     parallelIndex,
   }) => {
