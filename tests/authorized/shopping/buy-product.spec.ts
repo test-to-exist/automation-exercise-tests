@@ -4,7 +4,6 @@ import { NavigationBar } from "@pages/navigation-bar";
 import { ProductsPage } from "@pages/products.page";
 import { expect } from "@playwright/test";
 import { test } from "@fixtures/auth-fixture";
-import path = require("path");
 
 test("Add product to cart and checkout", async ({ page }) => {
   await page.goto(process.env.BASE_URL);
