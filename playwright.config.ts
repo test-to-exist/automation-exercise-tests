@@ -47,7 +47,6 @@ export default defineConfig({
       testDir: "./tests/authorized",
       use: {
         ...devices["Desktop Chrome"],
-        // storageState: "playwright/.auth/user.json",
       },
     },
     {
@@ -55,7 +54,6 @@ export default defineConfig({
       testDir: "./tests/authorized",
       use: {
         ...devices["Desktop Firefox"],
-        // storageState: "playwright/.auth/user.json",
       },
     },
     {
@@ -63,7 +61,6 @@ export default defineConfig({
       testDir: "./tests/authorized",
       use: {
         ...devices["Desktop Safari"],
-        // storageState: "playwright/.auth/user.json",
       },
     },
     {
@@ -72,7 +69,6 @@ export default defineConfig({
       use: {
         ...devices["Desktop Edge"],
         channel: "msedge",
-        // storageState: "playwright/.auth/user.json",
       },
     },
     {
@@ -81,39 +77,31 @@ export default defineConfig({
       use: {
         ...devices["Desktop Chrome"],
         channel: "chrome",
-        // storageState: "playwright/.auth/user.json",
       },
     },
-    // {
-    //   name: "login tests chromium",
-    //   testDir: "./tests/login",
-    //   use: {
-    //     ...devices["Desktop Chrome"],
-    //   },
-    // },
     {
-      name: "login & sign up tests firefox",
+      name: "unauthorized tests firefox",
       testDir: "./tests/unauthorized",
       use: {
         ...devices["Desktop Firefox"],
       },
     },
     {
-      name: "login & sign up tests webkit",
+      name: "unauthorized tests webkit",
       testDir: "./tests/unauthorized",
       use: {
         ...devices["Desktop Safari"],
       },
     },
     {
-      name: "login & sign up tests microsoft edge",
+      name: "unauthorized tests microsoft edge",
       testDir: "./tests/unauthorized",
       use: {
         ...devices["Desktop Edge"],
       },
     },
     {
-      name: "login & sign up tests chrome",
+      name: "unauthorized tests google chrome",
       testDir: "./tests/unauthorized",
       use: {
         ...devices["Desktop Chrome"],
