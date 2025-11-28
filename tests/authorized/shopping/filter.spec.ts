@@ -31,5 +31,19 @@ test.describe("Shopping Filters Tests", () => {
     });
   });
 
-  test.describe("Mens filters", () => {});
+  test.describe("Mens filters", () => {
+    test("User should be able to filter by Mens t-shirts", async ({ page }) => {
+      await page.goto(`${process.env.BASE_URL}`);
+      await page.getByRole("link", { name: " Men" }).click();
+
+      await page.locator("//a[contains(text(),'Tshirts')]").hover();
+      await page.locator("//a[contains(text(),'Tshirts')]").click();
+      const productNames = await page.locator(".product-overlay * p").count();
+      for (let i = 0; i < productNames; i++) {
+        await expect(page.locator(".product-overlay * p").nth(i)).toContainText(
+          /(Tshirt|T-Shirt|T\sSHIRT)/
+        );
+      }
+    });
+  });
 });
