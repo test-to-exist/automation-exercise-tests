@@ -22,7 +22,7 @@
     "@types/lodash": "^4.17.18",
     "@types/node": "^22.15.30",
     "dotenv": "^16.5.0",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "prettier": "^3.5.3",
     "uuid": "^11.1.0"
   }
